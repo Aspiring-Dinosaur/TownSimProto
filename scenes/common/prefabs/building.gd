@@ -1,6 +1,8 @@
 extends Spatial
 
-export(Color) var mat_color = Color(1.0, 0.0, 1.0)
+
+export(Color) var mat_color = Color(1.0, 0.0, 1.0, 1.0)
+
 
 func _ready():
 	# Remember to set the Resource/Local To Scene to On under the Material,
