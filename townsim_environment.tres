@@ -1,4 +1,6 @@
 [gd_resource type="Environment" format=2]
 
 [resource]
-ambient_light_energy = 0.75
+fog_depth_curve = 0.233258
+fog_transmit_curve = 1.18921
+fog_height_curve = 1.8025
