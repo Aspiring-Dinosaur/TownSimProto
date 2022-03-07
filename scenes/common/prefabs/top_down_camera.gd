@@ -46,7 +46,7 @@ func _input(event):
 	# specific values
 	_boom_rotation.x = clamp(_boom_rotation.x, _boom_tilt_min, _boom_tilt_max)
 	# Tries to keep the y-rotation between 0 and TAU
-	_boom_rotation.y = _fix_angle(_boom_rotation.y)
+	_boom_rotation.y = fposmod(_boom_rotation.y, TAU)
 
 
 func _process(delta):
@@ -79,17 +79,6 @@ func _update_input() -> void:
 	_pan_direction = _pan_direction.rotated(
 			Vector3.UP, _boom_rotation.y
 			).normalized()
-
-
-# Tries to keep an angle between 0 and TAU.
-# If the angle is <= -2*TAU or >= 2*TAU it will not get all the way there.
-func _fix_angle(angle) -> float:
-	if angle < 0:
-		return angle + TAU
-	elif angle > TAU:
-		return angle - TAU
-	else:
-		return angle
 
 
 func _set_boom_tilt_max_deg(value) -> void:

@@ -6,7 +6,7 @@ func _input(event):
 		get_tree().notification(MainLoop.NOTIFICATION_WM_QUIT_REQUEST)
 
 func _ready():
-	var building_scene = preload("res://scenes/common/prefabs/building.tscn")
+	var building_scene = preload("res://buildings/building.tscn")
 	var building1 = building_scene.instance()
 	var building2 = building_scene.instance()
 	var building3 = building_scene.instance()
