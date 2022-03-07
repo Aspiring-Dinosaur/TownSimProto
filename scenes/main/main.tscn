@@ -1,7 +1,14 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/main/main.gd" type="Script" id=1]
 [ext_resource path="res://scenes/common/prefabs/top_down_camera.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/main/GroundStaticBody.gd" type="Script" id=3]
+[ext_resource path="res://buildings/proto_house_small/proto_house_small.tscn" type="PackedScene" id=4]
+[ext_resource path="res://buildings/proto_industry_small/proto_industry_small.tscn" type="PackedScene" id=5]
+[ext_resource path="res://buildings/proto_shop_small/proto_shop_small.tscn" type="PackedScene" id=6]
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 30, 0.1, 30 )
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 0.054902, 0.262745, 0.0196078, 1 )
@@ -12,6 +19,11 @@ size = Vector2( 50, 50 )
 
 [node name="Main" type="Spatial"]
 script = ExtResource( 1 )
+buildings = {
+"proto_house_small": ExtResource( 4 ),
+"proto_industry_small": ExtResource( 5 ),
+"proto_shop_small": ExtResource( 6 )
+}
 
 [node name="TopDownCamera" parent="." instance=ExtResource( 2 )]
 
@@ -19,16 +31,15 @@ script = ExtResource( 1 )
 transform = Transform( 0.707107, 0.5, -0.5, 0, 0.707107, 0.707107, 0.707107, -0.5, 0.5, 0, 0, 0 )
 shadow_enabled = true
 
-[node name="Ground" type="MeshInstance" parent="."]
-mesh = SubResource( 2 )
-material/0 = null
+[node name="GroundStaticBody" type="StaticBody" parent="."]
+collision_layer = 32768
+script = ExtResource( 3 )
 
-[node name="GridMap" type="GridMap" parent="."]
-cell_size = Vector3( 1, 1, 1 )
-data = {
-"cells": PoolIntArray(  )
-}
-__meta__ = {
-"_editor_clip_": 0,
-"_editor_floor_": Vector3( 0, 0, 0 )
-}
+[node name="CollisionShape" type="CollisionShape" parent="GroundStaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0 )
+shape = SubResource( 3 )
+
+[node name="Plane" type="MeshInstance" parent="GroundStaticBody"]
+mesh = SubResource( 2 )
+skeleton = NodePath("../..")
+material/0 = null
