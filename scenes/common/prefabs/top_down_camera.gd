@@ -21,8 +21,13 @@ var _is_middle_mouse_held: bool = false
 onready var _lookat = $LookAt
 onready var _camera_boom = $LookAt/CameraBoom
 
+export onready var camera: Camera = $LookAt/CameraBoom/Camera
+
 # TODO: implement a soft, over time rotate when pressing Q/E or
 # camera_rotate_left/_right
+
+func _ready():
+	_boom_rotation.x = TAU / 8.0
 
 func _input(event):
 	# Zooms the camera in and out
