@@ -5,11 +5,11 @@ export var _zoom_speed: float = 2.0
 export var _boom_min_y: float = 4.0
 export var _boom_max_y: float = 32.0
 
-export(float) var _boom_tilt_max_deg = TAU / 4.0 - TAU / 32.0 setget _set_boom_tilt_max_deg, _get_boom_tilt_max_deg
-export(float) var _boom_tilt_min_deg = 0.0 setget _set_boom_tilt_min_deg, _get_boom_tilt_min_deg
-
 var _boom_tilt_max: float = TAU / 4.0 - TAU / 32.0
 var _boom_tilt_min: float = 0.0
+
+export(float) var _boom_tilt_max_deg = _boom_tilt_max setget _set_boom_tilt_max_deg, _get_boom_tilt_max_deg
+export(float) var _boom_tilt_min_deg = _boom_tilt_min setget _set_boom_tilt_min_deg, _get_boom_tilt_min_deg
 
 var _boom_rotation_speed: float = 0.005
 
